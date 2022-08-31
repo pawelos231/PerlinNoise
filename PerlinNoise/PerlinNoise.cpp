@@ -1,4 +1,12 @@
-﻿#include <iostream>
+﻿/*
+~~~~~~~
+Program created with the help of Javidx9 tutorial 
+link to video: https://www.youtube.com/watch?v=6-0UaeJBumA
+~~~~~~~
+*/
+
+
+#include <iostream>
 #include <string>
 #include <algorithm>
 #include "olcConsoleGameEngine.h"
