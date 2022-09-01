@@ -41,7 +41,7 @@ private:
 
         fNoiseSeed2D = new float[nOutputWidth * nOutputHeight];
         fPerlinNoise2D = new float[nOutputWidth * nOutputHeight];
-        for (int i = 0; i < nOutputWidth * nOutputHeight; i++) fNoiseSeed2D[i] = (float)rand() / (float)RAND_MAX;
+        for (int i = 0; i < nOutputWidth * nOutputHeight; i++) fNoiseSeed2D[i] = static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
 
 
         nOutputSize = ScreenWidth();
@@ -87,10 +87,10 @@ private:
         if (nMode == 1) {
 
             if (m_keys[L'Z'].bReleased) // Noise Between 0 and +1
-                for (int i = 0; i < nOutputSize; i++) fNoiseSeed1D[i] = (float)rand() / (float)RAND_MAX;
+                for (int i = 0; i < nOutputSize; i++) fNoiseSeed1D[i] = static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
 
             if (m_keys[L'X'].bReleased) // Noise Between -1 and +1
-                for (int i = 0; i < nOutputSize; i++) fNoiseSeed1D[i] = 2.0f * ((float)rand() / (float)RAND_MAX) - 1.0f;
+                for (int i = 0; i < nOutputSize; i++) fNoiseSeed1D[i] = 2.0f * (static_cast<float>(rand()) / static_cast<float>(RAND_MAX)) - 1.0f;
 
             GeneratePerlinNoise1D(nOutputSize, fNoiseSeed1D, nOctaveCount, fScalingBias, fPerlinNoise1D);
             for (int x = 0; x < nOutputSize; x++) {
@@ -106,7 +106,7 @@ private:
 
         if (nMode == 2) {
             if (m_keys[L'Z'].bReleased) // Noise Between 0 and +1
-                for (int i = 0; i < nOutputWidth * nOutputHeight; i++) fNoiseSeed2D[i] = (float)rand() / (float)RAND_MAX;
+                for (int i = 0; i < nOutputWidth * nOutputHeight; i++) fNoiseSeed2D[i] = static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
 
             GeneratePerlinNoise2D(nOutputWidth, nOutputHeight, fNoiseSeed2D, nOctaveCount, fScalingBias, fPerlinNoise2D);
 
@@ -116,7 +116,7 @@ private:
                 {
                     short bg_col, fg_col;
                     wchar_t sym;
-                    int pixel_bw = (int)(fPerlinNoise2D[y * nOutputWidth + x] * 12.0f);
+                    int pixel_bw = static_cast<int>((fPerlinNoise2D[y * nOutputWidth + x] * 12.0f));
                     switch (pixel_bw)
                     {
                     case 0: bg_col = BG_BLACK; fg_col = FG_BLACK; sym = PIXEL_SOLID; break;
@@ -206,8 +206,6 @@ private:
     };
 
 };
-
-
 
 
 int main()
